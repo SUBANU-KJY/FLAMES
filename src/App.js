@@ -30,10 +30,12 @@ function App() {
 
 
   let OnclickHandle = () => {
+    
     let flames = ["Friend", "Lover", "Attraction", "Marriage", "Enemy", "Sister"];
     let Bname=Boyname.current.value;
     let Gname=Girlname.current.value;
       console.log(Bname,Gname);
+      if (Bname !=="" || Gname !== "") {
       const splitArray=splitNames(Bname,Gname);
     console.log(splitArray);//[0,1]
     const BnameRemainder = getRemainder(splitArray[1], Bname);
@@ -44,6 +46,7 @@ function App() {
     document.querySelector('.resultdiv').innerHTML=`${Result}`;
     alert(Result);
   }
+}
 
   
 const getResult = (flames,Count) => {
