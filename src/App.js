@@ -1,36 +1,35 @@
-import styled from "styled-components";
+//mport styled from "styled-components";
 import React from "react";
-import {useState} from 'react';
+//import {useState} from 'react';
 //import { Frontpage } from "./components";
+import Wrapper from "./styles/Wrapper";
 
 
 //============================================================================
-const Wrapper =styled.div`
-display:flex;
-align-items: center;
-flex-direction:column;
-padding:15rem;
-line-height:2.5rem;
-background-color: pink;
-`
+
 function App() {
   
 
-  const [Bname ,setBname] = useState('');
-  const [Gname ,setGname] = useState('');
-
+  
   //console.log(Boyname);
   
-  // let Boyname = React.createRef();  // React use ref to get input value
-  // let Girlname = React.createRef();  
+   let Boyname = React.createRef();  // React use ref to get input value
+   let Girlname = React.createRef();  
+  //const [Bname ,setBname] = useState('');
+  //const [Gname ,setGname] = useState('');
+
 
 
   let OnclickHandle = () => {
     
+    
     let flames = ["Friend", "Lover", "Attraction", "Marriage", "Enemy", "Sister"];
-    // let Bname=Boyname.current.value;
-    // let Gname=Girlname.current.value;
-      //console.log(Bname,Gname);
+     let B=Boyname.current.value;
+     let G=Girlname.current.value;
+     console.log(B,G)
+     let Bname=B.replace(/\s/gm,'');
+     let Gname=G.replace(/\s/gm,'');
+      console.log(Bname,Gname);
       if(Bname ===""|| Gname ===""){
 document.querySelector('.resultdiv').innerHTML="Enter Both Names"
       }
@@ -46,6 +45,26 @@ document.querySelector('.resultdiv').innerHTML="Enter Both Names"
     alert(Result);
   }
 }
+//let text = "s ubanu";
+//let result = text.replace(/\s/gm,'');
+
+const splitNames = (Bname,Gname) => {
+    
+  if (Bname === "" || Gname === "") {
+      console.log("Enter both names")
+    document.querySelector('.S').innerHTML = "Enter both names!"
+  } else {
+    // Bname=Bname.replace(/\s/gm,'');
+    // console.log(Bname);
+      const splitBname= Bname.split("")
+      const splitGname = Gname.split("")
+      console.log(splitBname);
+      console.log( splitGname );
+      return [splitBname, splitGname]
+  } 
+}
+
+
 
   
 const getResult = (flames,Count) => {
@@ -68,6 +87,7 @@ const getResult = (flames,Count) => {
 
   const getRemainder = (splitName, name) => {
   console.log(splitName, name)
+  //eslint-disable-next-line
   splitName.map(item => {
     const regex = new RegExp(`${item}`,"i")
     name = name.replace(regex, "")
@@ -85,21 +105,7 @@ const getCount = (BnameRemainder,GnameRemainder) => {
   return totalCount
 }
 
-
-  const splitNames = (Bname,Gname) => {
-    
-    if (Bname === "" || Gname === "") {
-        console.log("Enter both names")
-      document.querySelector('.S').innerHTML = "Enter both names!"
-    } else {
-        const splitBname= Bname.split("")
-        const splitGname = Gname.split("")
-        console.log(splitBname);
-        console.log( splitGname );
-        return [splitBname, splitGname]
-    } 
-  }
-
+ //sertytre <input type="text" value={Bname} onChange={event => setBname(event.target.value)}></input><br/>
 
   const refreshPage = ()=>{
     window.location.reload();
@@ -109,9 +115,10 @@ const getCount = (BnameRemainder,GnameRemainder) => {
     <form>
   <label>Boyname:</label>
 
-  <input type="text"  onChange={event => setBname(event.target.value)}></input><br/>
+ 
+  <input type="text" ref={Boyname}></input><br/>
   <label>Girlname:</label>
-  <input type="text"  onChange={event => setGname(event.target.value)}></input><br/>
+  <input type="text" ref={Girlname} ></input><br/>
   <button type="button" onClick={OnclickHandle} >calculate</button>
   <button type="button" onClick={refreshPage}>reset</button>
   </form>
