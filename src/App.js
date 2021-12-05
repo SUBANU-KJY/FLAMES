@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import React from "react";
-//import {useState} from 'react';
+import {useState} from 'react';
 //import { Frontpage } from "./components";
 
 
@@ -13,29 +13,28 @@ padding:15rem;
 line-height:2.5rem;
 background-color: pink;
 `
-//============================================================================
-//dtyrt <input type="text" value ={Boyname} onChange={event => setBoyname(event.target.value)}></input><br/>
-//=========================================================================================
-
-
-
 function App() {
   
 
-  //const [Boyname, setBoyname] = useState('');
+  const [Bname ,setBname] = useState('');
+  const [Gname ,setGname] = useState('');
+
   //console.log(Boyname);
   
-  let Boyname = React.createRef();  // React use ref to get input value
-  let Girlname = React.createRef();  
+  // let Boyname = React.createRef();  // React use ref to get input value
+  // let Girlname = React.createRef();  
 
 
   let OnclickHandle = () => {
     
     let flames = ["Friend", "Lover", "Attraction", "Marriage", "Enemy", "Sister"];
-    let Bname=Boyname.current.value;
-    let Gname=Girlname.current.value;
-      console.log(Bname,Gname);
-      if (Bname !=="" || Gname !== "") {
+    // let Bname=Boyname.current.value;
+    // let Gname=Girlname.current.value;
+      //console.log(Bname,Gname);
+      if(Bname ===""|| Gname ===""){
+document.querySelector('.resultdiv').innerHTML="Enter Both Names"
+      }
+    else if (Bname !=="" || Gname !== "") {
       const splitArray=splitNames(Bname,Gname);
     console.log(splitArray);//[0,1]
     const BnameRemainder = getRemainder(splitArray[1], Bname);
@@ -110,10 +109,10 @@ const getCount = (BnameRemainder,GnameRemainder) => {
     <form>
   <label>Boyname:</label>
 
-  <input type="text" ref={Boyname}></input><br/>
+  <input type="text"  onChange={event => setBname(event.target.value)}></input><br/>
   <label>Girlname:</label>
-  <input type="text" ref={Girlname} ></input><br/>
-  <button type="button" onClick={OnclickHandle}>calculate</button>
+  <input type="text"  onChange={event => setGname(event.target.value)}></input><br/>
+  <button type="button" onClick={OnclickHandle} >calculate</button>
   <button type="button" onClick={refreshPage}>reset</button>
   </form>
   <div className="resultdiv"></div>
