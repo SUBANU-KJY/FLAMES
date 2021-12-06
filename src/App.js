@@ -1,20 +1,11 @@
-  import React from "react";
+
+
+import React from "react";
+import Wrapper from "./components/Styles";
 
   //import {useState} from 'react';
 
-  import styled from "styled-components"
- const Wrapper =styled.div`
-display:flex;
-align-items: center;
-flex-direction:column;
-justify-content: center;
-line-height:2.5rem;
-background-color: pink;
-height:100vh;
-margin:0;
-padding:0;
-box-sizing: border-box;
-`
+
 
   function App() {
     let Boyname = React.createRef();  // React use ref to get input value
@@ -46,7 +37,6 @@ box-sizing: border-box;
       const Result = getResult(flames,Count);
       
       document.querySelector('.resultdiv').innerHTML=`${Result}`;
-      alert(Result);
     }
   }
   
@@ -61,6 +51,28 @@ box-sizing: border-box;
         return [splitBname, splitGname]
     
   }
+
+  
+  const getRemainder = (splitName, name) => {
+    console.log(splitName, name)
+    //eslint-disable-next-line
+    splitName.map(item => {
+      const regex = new RegExp(`${item}`,"i")
+      name = name.replace(regex, "")
+      console.log(name)
+  })
+  console.log(name)
+  return name
+    }
+
+    const getCount = (BnameRemainder,GnameRemainder) => {
+      const totalWords = BnameRemainder+GnameRemainder
+      const totalCount = totalWords.length
+      console.log(totalCount)
+      return totalCount
+    }
+  
+
 
 
 
@@ -82,43 +94,31 @@ box-sizing: border-box;
       return flames
     }
 
-
-    const getRemainder = (splitName, name) => {
-    console.log(splitName, name)
-    //eslint-disable-next-line
-    splitName.map(item => {
-      const regex = new RegExp(`${item}`,"i")
-      name = name.replace(regex, "")
-      console.log(name)
-  })
-  console.log(name)
-  return name
-    }
-
-    
-  const getCount = (BnameRemainder,GnameRemainder) => {
-    const totalWords = BnameRemainder+GnameRemainder
-    const totalCount = totalWords.length
-    console.log(totalCount)
-    return totalCount
-  }
-
-  //s <input type="text" value={Bname} onChange={event => setBname(event.target.value)}></input><br/>
-
     const refreshPage = ()=>{
       window.location.reload();
     }
+    
+  
+  //s <input type="text" value={Bname} onChange={event => setBname(event.target.value)}></input><br/>
+//https://c4.wallpaperflare.com/wallpaper/276/379/634/love-image-4k-couple-wallpaper-preview.jpg
+    
     return (
-      <Wrapper>
+      <Wrapper className="wrapper">
       <form>
-    <label>Boyname:</label>
-    <input type="text" ref={Boyname}></input><br/>
-    <label>Girlname:</label>
-    <input type="text" ref={Girlname} ></input><br/>
-    <button type="button" onClick={OnclickHandle} >calculate</button>
-    <button type="button" onClick={refreshPage}>reset</button>
-    </form>
+        <div className="heading">Check with your loved ones</div>
+        <div className="inputsdiv">
+    <label className="label1">Boyname:</label>
+    <input type="text" ref={Boyname} className="input1"></input><br/>
+    <label className="label2">Girlname:</label>
+    <input type="text" ref={Girlname} className="input2" ></input><br/>
+    </div>
+    <div className="buttons">
+    <button type="button" onClick={OnclickHandle} className="button1">calculate</button><br/>
+    <button type="button" onClick={refreshPage} className="button2">reset</button>
+    </div>
+    </form><br/>
     <div className="resultdiv"></div>
+  
     
     </Wrapper>
     );
@@ -126,4 +126,3 @@ box-sizing: border-box;
 
 
   export default App;
-//hyguyg -

@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    .wrapper {
+    background-image: url(https://c4.wallpaperflare.com/wallpaper/276/379/634/love-image-4k-couple-wallpaper-preview.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color:white;
+    background-size: cover;
+    background-position: center;   
+    }
+    @media (max-width: 480px) {
+        .wrapper {
+            background-image: url(https://wallpaperaccess.com/full/3184467.jpg);
+        }
+    }
